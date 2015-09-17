@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +14,8 @@
                 <p>Vous pouvez vous inscrire via ce formulaire.</p>
 
                 <label for="email">Adresse email <span class="requis">*</span></label>
-                <input type="text" id="email" name="email" value="${param.email}" size="20" maxlength="60" />
+                <input type="text" id="email" name="email" value="<c:out value="${param.email}"/>" size="20" maxlength="60" />
+                
                 <span class="erreur">${erreurs['email']}</span>
                 <br />
 
@@ -28,7 +30,7 @@
                 <br />
 
                 <label for="nom">Nom d'utilisateur</label>
-                <input type="text" id="nom" name="nom" value="${param.nom}" size="20" maxlength="20" />
+                <input type="text" id="nom" name="nom" value="<c:out value="${param.nom}"/>" size="20" maxlength="20" />
                 <span class="erreur">${erreurs['nom']}</span>
                 <br />
 

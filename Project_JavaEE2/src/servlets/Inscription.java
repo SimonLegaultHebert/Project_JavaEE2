@@ -21,7 +21,6 @@ public class Inscription extends HttpServlet{
 	public static final String ATT_ERREURS  = "erreurs";
     public static final String ATT_RESULTAT = "resultat";
 
-
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher(VUE).forward(req, resp);		
 	}
