@@ -14,8 +14,7 @@
                 <p>Vous pouvez vous inscrire via ce formulaire.</p>
 
                 <label for="email">Adresse email <span class="requis">*</span></label>
-                <input type="text" id="email" name="email" value="<c:out value="${param.email}"/>" size="20" maxlength="60" />
-                
+                <input type="text" id="email" name="email" value="<c:out value="${param.email}"/>" size="20" maxlength="60" />           
                 <span class="erreur">${erreurs['email']}</span>
                 <br />
 
@@ -36,6 +35,8 @@
 
                 <input type="submit" value="Inscription" class="sansLabel" />
                 <br />
+                
+                <p class="${empty erreurs ? 'succes' : 'erreur'}">${resultat}</p>
             </fieldset>
         </form>
     </body>
