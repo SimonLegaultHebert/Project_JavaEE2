@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import beans.Utilisateur;
 
 /**
- * Contient la logique d'affaire du formulaire pour l'inscription
+ * Contient la logique d'affaire du formulaire pour l'inscription.
  * @author Leg
  *
  */
@@ -23,24 +23,36 @@ public class InscriptionForm {
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
 	
+	/**
+	 * Logique d'affaire du formulaire.
+	 * @param req
+	 * @return
+	 */
 	public Utilisateur inscrireUtilisateur(HttpServletRequest req){
 		String email = req.getParameter(CHAMP_EMAIL).trim();
 		String motDePasse = req.getParameter(CHAMP_PASS).trim();
 		String confirmation = req.getParameter(CHAMP_CONFIRMATION).trim();
 		String nom = req.getParameter(CHAMP_NOM).trim();
 
-		Utilisateur utilisateur = validerParametres(email, motDePasse, confirmation, nom);
+		Utilisateur utilisateur = creerUtilisateur(email, motDePasse, confirmation, nom);
         /* Initialisation du résultat global de la validation. */
         if (erreurs.isEmpty()) {
             resultat = "Succès de l'inscription.";
         } else {
             resultat = "Échec de l'inscription.";
-
         }
         return utilisateur;
 	}
 	
-	private Utilisateur validerParametres(String email, String motDePasse, String confirmation, String nom){
+	/**
+	 * Valider les paramètres et retourne l'utilisateur en conséquence.
+	 * @param email
+	 * @param motDePasse
+	 * @param confirmation
+	 * @param nom
+	 * @return
+	 */
+	private Utilisateur creerUtilisateur(String email, String motDePasse, String confirmation, String nom){
 		Utilisateur utilisateur = new Utilisateur();
 		
 		/* Validation du champ email. */
@@ -65,11 +77,14 @@ public class InscriptionForm {
         } catch (InvalidParameterException e) {
         	rajouterErreur(CHAMP_NOM, e.getMessage());
         }	
-        utilisateur.setNom(nom);
-        
+        utilisateur.setNom(nom);    
         return utilisateur;
 	}
 	
+	/**
+	 * Validation du courriel.
+	 * @param email
+	 */
 	private void validationEmail(String email){
 		if(email != null && !email.isEmpty()){
 			if(!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")){
@@ -80,6 +95,11 @@ public class InscriptionForm {
 		}
 	}
 	
+	/**
+	 * Validation du mot de passe et de la confirmation.
+	 * @param motDePasse
+	 * @param confirmation
+	 */
 	private void validationMotDePasse(String motDePasse, String confirmation){
 		if(motDePasse != null && motDePasse.length() > 5 && confirmation != null && confirmation.length() > 5){
 			if(!motDePasse.equals(confirmation)){
@@ -90,23 +110,30 @@ public class InscriptionForm {
 		}
 	}
 	
+	/**
+	 * Validation du nom.
+	 * @param nom
+	 */
 	private void validationNom(String nom){
 		if(nom == null || nom.length() < 6){
 			throw new InvalidParameterException("Le nom d'usager doit contenir au moins 6 caractères.");
 		}
 	}
 	
-	public String getResultat() {
-		return resultat;
-	}
-	
-
-	public Map<String, String> getErreurs() {
-		return erreurs;
-	}
-	
+	/**
+	 * Rajoute les erreurs de paramètres dans la Map.
+	 * @param champ
+	 * @param message
+	 */
 	private void rajouterErreur(String champ, String message) {
 	    erreurs.put(champ, message);
 	}
 	
+	public String getResultat() {
+		return resultat;
+	}
+	
+	public Map<String, String> getErreurs() {
+		return erreurs;
+	}
 }

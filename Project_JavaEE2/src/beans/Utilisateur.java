@@ -1,7 +1,7 @@
 package beans;
 
 /**
- * Bean utilisateur
+ * Bean Utilisateur.
  * @author Leg
  *
  */
