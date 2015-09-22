@@ -22,6 +22,11 @@ form .succes {
     color: #090;
 }
 
+form .info {
+    font-style: italic;
+    color: #E8A22B;
+}
+
 /* Forms --------------------------------------------------------------------------------------- */
 
 form label {
