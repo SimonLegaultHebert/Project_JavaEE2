@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Connexion</title>
-        <link type="text/css" rel="stylesheet" href="inc/style.css" />
+        <link type="text/css" rel="stylesheet" href="<c:url value="/inc/style.css"/>" />
     </head>
     <body>
         <form method="post" action="<c:url value="/connexion" />">

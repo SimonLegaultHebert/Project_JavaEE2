@@ -39,4 +39,40 @@
     <servlet-name>Restriction</servlet-name>
     <url-pattern>/restriction</url-pattern>
 </servlet-mapping>
+
+
+<filter>
+	<filter-name>RestrictionFilter</filter-name>
+	<filter-class>filters.RestrictionFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>RestrictionFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<filter>
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+        <param-name>ignore</param-name>
+        <param-value>false</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+
+
+
+
+
+
+
+
 </web-app>
